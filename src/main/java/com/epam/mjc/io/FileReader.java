@@ -2,10 +2,11 @@ package com.epam.mjc.io;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class FileReader {
@@ -27,10 +28,8 @@ public class FileReader {
             profile.setAge(Integer.valueOf(data.get("Age")));
             profile.setEmail(data.get("Email"));
             profile.setPhone(Long.valueOf(data.get("Phone")));
-        } catch (FileNotFoundException e){
-            System.out.printf("File \"%s\" is not found!%n", file.getName());
-        } catch (IOException e){
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            Logger.getLogger("FileReader").log(Level.INFO, e.getMessage());
         }
         return profile;
     }
